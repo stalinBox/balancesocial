@@ -1,0 +1,347 @@
+@import url("OpenSans_Semibold/stylesheet.css");
+#contenedorpdf {
+	width: 100%;
+	height: auto;
+	min-width: 0px;
+}
+#contenedorpdf .caratulajpg {
+	width: 90%;
+	height: 660px;
+	border: 1px solid rgba(197,197,197,1.00);
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+
+#contenedorpdf #cabeceraprincipalpdf {
+	width: 40%;
+	height: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	border-left: 20px solid #4C7A90;
+}
+#contenedorpdf #cabeceraprincipalpdf #logorsempresarial {
+	width: 25%;
+	height: 50px;
+	text-align: center;
+	float: left;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+#contenedorpdf #cabeceraprincipalpdf #derechacolor {
+	background-color: #4C7A90;
+	width: 73%;
+	float: left;
+	margin-top: 12px;
+	height: 17px;
+}
+
+
+
+#contenedorpdf #cabecerapdf {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 120px;
+	border-bottom: 1.5px solid #4C7A90;
+	text-align: center;
+}
+#contenedorpdf #cabecerapdf #caracteristicas {
+	width: 20%;
+	float: left;
+	height: 110px;
+	margin-left: 40%;
+	font-family: "OpenSans Semibold";
+	font-size: 10pt;
+	color: rgba(0,0,0,1.00);
+	text-align: center;
+	display: block;
+}
+#contenedorpdf #cabecerapdf #Imagen1 {
+	width: 20%;
+	float: right;
+	height: 110px;
+}
+#contenedorpdf #tablapdf {
+	width: 90%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+#contenedorpdf #tablapdf .hoja0 {
+	width: 100%;
+	height: 600px;
+	border: 1px solid rgba(183,175,175,1.00);
+	margin-top: 20px;
+}
+#tablapdf .hoja0 .h0izq {
+	width: 48%;
+	padding-left: 1%;
+	padding-right: 1%;
+	height: 400px;
+	margin-top: 100px;
+	float: left;
+	border-right: 2px solid #4C7A90;
+}
+#tablapdf .hoja0 .h0dere {
+	width: 47%;
+	margin-left: 1%;
+	margin-right: 1%;
+	float: left;
+	height: 600px;
+	text-align: center;
+	border-top: 5px solid #4C7A90;
+	border-bottom: 5px solid #4C7A90;
+}
+
+
+
+#tablapdf #tablaceldaspdf .tablclpelpdf {
+	width: 100%;
+	margin-top: 5px;
+	border: 0.1px solid rgba(203,202,202,0.23);
+}
+.tablclpelpdf thead .horizontalcabpdf {
+	background-color: #4C7A90;
+	width: 100%;
+	color: rgba(255,255,255,1.00);
+	font-family: "OpenSans Semibold";
+	font-size: 10pt;
+}
+
+.tablclpelpdf tbody .horizontalpdfcuerpo1 {
+	width: 100%;
+	color: rgba(0,0,0,1.00);
+	font-size: 10pt;
+	font-family: "Open Sans";
+}
+.tablclpelpdf tbody .horizontalpdfcuerpo2 {
+	background-color: rgba(255,255,255,1.00);
+	width: 100%;
+	color: rgba(0,0,0,1.00);
+	font-size: 10pt;
+	font-family: "Open Sans";
+}
+.tablclpelpdf tbody .horizontalpdfcuerpo3 {
+	background-color: rgba(255,255,255,1.00);
+	width: 100%;
+	color: rgba(0,0,0,1.00);
+	font-size: 10pt;
+	font-family: "Open Sans";
+}
+.clmnpdf1   {
+	width: 25%;
+	text-align: center;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+
+
+
+
+
+@media only screen and (max-width:700px)
+{
+
+
+}
+
+@media only screen and (max-width:350px)
+{
+
+	
+}
+.clmnpdf2   {
+	width: 25%;
+	text-align: center;
+	border-right: 1px solid rgba(203,203,203,1.00);
+	border-left: 1px solid rgba(203,203,203,1.00);
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3   {
+	width: 25%;
+	text-align: center;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf4   {
+	width: 25%;
+	text-align: center;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3resultado   {
+	width: 17%;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+	border-right: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3verde   {
+	width: 8%;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+	border-right: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3naranja   {
+	width: 8%;
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+	border-right: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3rojo   {
+	width: 8%;
+	border-right: 1px solid rgba(203,203,203,1.00);
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3amarillo   {
+	width: 8%;
+	border-right: 1px solid rgba(203,203,203,1.00);
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3azul   {
+	width: 8%;
+	border-right: 1px solid rgba(203,203,203,1.00);
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+.clmnpdf3celeste   {
+	width: 8%;
+	border-right: 1px solid rgba(203,203,203,1.00);
+	border-bottom: 1px solid rgba(203,203,203,1.00);
+}
+
+
+
+
+
+
+
+
+.tablclpelpdf .pdf .pietablapdf {
+	width: 48%;
+	background-color: #4C7A90;
+	color: rgba(255,255,255,1.00);
+	font-family: "OpenSans Semibold";
+	font-size: 10pt;
+	text-align: center;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+#contenedorpdf #tablapdf  .hoja1 {
+	width: 100%;
+	height: 600px;
+	border: 1px solid rgba(208,208,208,1.00);
+	margin-top: 10px;
+}
+#tablapdf .hoja1 .h1izquierda {
+	padding-left: 1%;
+	padding-right: 1%;
+	width: 47%;
+	height: 600px;
+	float: left;
+	border-right: 2px solid #4C7A90;
+}
+.hoja1 .h1izquierda .h1a {
+	width: 100%;
+}
+.titulos   {
+	width: 100%;
+	height: auto;
+	font-family: "OpenSans Semibold";
+	font-size: 12pt;
+	color: #4C7A90;
+	border-left: 3px solid #4C7A90;
+	padding-left: 5px;
+}
+.texto   {
+	width: 100%;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 9pt;
+	text-align: justify;
+}
+.jpg1   {
+	width: 100%;
+	height: 251px;
+	border-bottom: 5px solid rgba(39,128,155,1.00);
+	border-top: 1px solid rgba(39,128,155,1.00);
+}
+.imagen1   {
+	width: 100%;
+	height: 250px;
+
+}
+tbody tr .img1 {
+	width: 60%;
+	text-align: center;
+}
+tbody tr .descimg1 {
+	width: 40%;
+	height: 250px;
+	color: #4C7A90;
+	font-family: "Open Sans";
+	font-size: 8pt;
+	text-align: justify;
+}
+
+
+
+
+
+
+#tablapdf .hoja1 .h1derecha {
+	width: 48%;
+	height: 600px;
+	float: left;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+.jpg2   {
+	width: 100%;
+	height: 255px;
+	border-bottom: 5px solid #4C7A90;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.hoja1 .h1derecha .h1b {
+	width: 100%;
+	height: auto;
+}
+.titulos2   {
+	width: 100%;
+	height: auto;
+	color: #9AB560;
+	font-family: "OpenSans Semibold";
+	padding-left: 5px;
+	border-left: 3px solid #9AB560;
+}
+
+
+
+
+
+
+
+
+
+
+#contenedorpdf #piefuerapdf {
+	width: 90%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+#contenedorpdf #piefuerapdf .tablapie {
+	width: 100%;
+}
+
+tbody tr .clmnpiepdf1 {
+	background-color: #4C7A90;
+	width: 20%;
+}
+tbody tr .clmnpiepdfmedio {
+	background-color: rgba(224,222,222,1.00);
+	color: rgba(156,153,153,1.00);
+	font-family: "Open Sans";
+	font-size: 8pt;
+	text-align: center;
+	width: 60%;
+}
