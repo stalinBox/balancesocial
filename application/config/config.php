@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // Cambiar o referenciar para subir la aplicación al a web
-$config['base_url'] = 'http://192.168.1.154/balancesocial/';
+$config['base_url'] = 'http://localhost/balancesocial/';
 //$config['base_url_absolute_ssl']= "https://balancesocial.uta.edu.ec";
 
 /*

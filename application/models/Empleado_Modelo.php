@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 /**
-* 
+*
 */
 class Empleado_Modelo extends CI_Model{
-	
+
 	function __construct(){
 		# code...
 	}
@@ -26,6 +26,7 @@ class Empleado_Modelo extends CI_Model{
 						  'FFinReincorporacion' => $arrayEmpleado['FFinReincorporacion'],
 						  'SalarioEmpleado' => $arrayEmpleado['SalarioEmpleado'],
 						  'TipoContrato' => $arrayEmpleado['TipoContrato'],
+						  'EstadoCivil' => $arrayEmpleado['EstadoCivil'],
 						  'CargoEstructural' => $arrayEmpleado['CargoEstructural'],
 						  'NumClausulasContrato' => $arrayEmpleado['NumClausulasContrato'],
 						  'AfiliadoIESSEmpleado' => $arrayEmpleado['AfiliadoIESSEmpleado'],
@@ -41,7 +42,7 @@ class Empleado_Modelo extends CI_Model{
 						  );
 		$this->db->trans_start();
 		$insert = $this->db->insert('Empleado',$empleado);
-		$this->db->trans_complete();		
+		$this->db->trans_complete();
 		if($insert){
 			return true;
 		}else{
@@ -63,7 +64,7 @@ class Empleado_Modelo extends CI_Model{
 		$resultado = $this->db->get('Empleado');
 		if($resultado->num_rows() > 0)
 			return $resultado->result();
-		else 
+		else
 			return false;
 	}
 
@@ -95,12 +96,13 @@ class Empleado_Modelo extends CI_Model{
 						  'EstadoLaboralEmpleado' => $arrayEmpleado['EstadoLaboralEmpleado'],
 						  'RevisorCVEmpleado' => $arrayEmpleado['RevisorCVEmpleado'],
 						  'PerteneceSindicato' => $arrayEmpleado['PerteneceSindicato'],
+						  'EstadoCivil' => $arrayEmpleado['EstadoCivil'],
 						  'IdEmpresa' => $arrayEmpleado['IdEmpresa']
 						  );
 		$this->db->trans_start();
 		$this->db->where('CedulaEmpleado', $CIEmpleado)->where('IdEmpresa', $IdEmpresa);
 		$update = $this->db->update('Empleado',$empleado);
-		$this->db->trans_complete();		
+		$this->db->trans_complete();
 		if($update){
 			return true;
 		}else{

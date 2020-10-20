@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
-* 
+*
 */
 class empleado extends CI_Controller{
-	
+
 	function __construct(){
-		parent::__construct();			
+		parent::__construct();
 	}
 
 	public function index(){
@@ -22,10 +22,10 @@ class empleado extends CI_Controller{
 			$this->load->view("plantilla", $dato);
 		}else{
 			redirect('inicio');
-		}	
-	}	
+		}
+	}
 
-	public function empleados(){			
+	public function empleados(){
 		if($this->session->userdata("IdEmpresaSesion")){
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$inicioURL =  base_url();
@@ -61,7 +61,7 @@ class empleado extends CI_Controller{
 					$dato["contenedor"] = "empleados/empleados_view";
 					$this->load->view('plantilla', $dato);
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -72,12 +72,12 @@ class empleado extends CI_Controller{
 			$tipoUsuario = $this->session->userdata("tipoUsuario");
  			if ($tipoUsuario == "Admin") {
  				$this->load->model('Empleado_Modelo');
-				$this->load->model('Sindicato_Modelo');								
+				$this->load->model('Sindicato_Modelo');
 				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 				$dato['sindicatos'] = $this->Sindicato_Modelo->getListSindicato($IdEmpresaSesion);
-				$dato["contenedor"] = "empleados/empleado_new_edit";			
-				$dato["titulo"] = "Nuevo Empleado"; 
-				$dato["accion"] = "Nuevo";   
+				$dato["contenedor"] = "empleados/empleado_new_edit";
+				$dato["titulo"] = "Nuevo Empleado";
+				$dato["accion"] = "Nuevo";
 				$this->load->view("plantilla", $dato);
  			}else{
  				$perfilSesion = $this->session->userdata("perfilSesion");
@@ -87,12 +87,12 @@ class empleado extends CI_Controller{
 				if (!empty($dato["permisos"])){
 					if ($dato["permisos"][0]->Agregar == 1) {
 						$this->load->model('Empleado_Modelo');
-						$this->load->model('Sindicato_Modelo');								
+						$this->load->model('Sindicato_Modelo');
 						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 						$dato['sindicatos'] = $this->Sindicato_Modelo->getListSindicato($IdEmpresaSesion);
-						$dato["contenedor"] = "empleados/empleado_new_edit";			
-						$dato["titulo"] = "Nuevo Empleado"; 
-						$dato["accion"] = "Nuevo";   
+						$dato["contenedor"] = "empleados/empleado_new_edit";
+						$dato["titulo"] = "Nuevo Empleado";
+						$dato["accion"] = "Nuevo";
 						$this->load->view("plantilla", $dato);
 					}else{
 						$this->empleados();
@@ -101,10 +101,10 @@ class empleado extends CI_Controller{
 					$this->empleados();
 				}
  			}
-			
+
 		}else{
 			redirect('inicio');
-		}	
+		}
 	}
 	public function editarEmpleado($CIEmpleado){
 		if($this->session->userdata("IdEmpresaSesion")){
@@ -112,12 +112,12 @@ class empleado extends CI_Controller{
 			$tipoUsuario = $this->session->userdata("tipoUsuario");
  			if ($tipoUsuario == "Admin") {
  				$this->load->model('Empleado_Modelo');
-				$this->load->model('Sindicato_Modelo');					
-				$dato['empleado'] = $this->Empleado_Modelo->getEmpleado($CIEmpleado, $IdEmpresaSesion);    
+				$this->load->model('Sindicato_Modelo');
+				$dato['empleado'] = $this->Empleado_Modelo->getEmpleado($CIEmpleado, $IdEmpresaSesion);
 				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 				$dato['sindicatos'] = $this->Sindicato_Modelo->getListSindicato($IdEmpresaSesion);
-				$dato["titulo"] = "Editar Empleado";   
-				$dato["accion"] = "Editar";	
+				$dato["titulo"] = "Editar Empleado";
+				$dato["accion"] = "Editar";
 				$dato["contenedor"] = "empleados/empleado_new_edit";
 				$this->load->view('plantilla', $dato);
  			}else{
@@ -128,12 +128,12 @@ class empleado extends CI_Controller{
 				if (!empty($dato["permisos"])){
 					if ($dato["permisos"][0]->Actualizar == 1) {
 						$this->load->model('Empleado_Modelo');
-						$this->load->model('Sindicato_Modelo');					
-						$dato['empleado'] = $this->Empleado_Modelo->getEmpleado($CIEmpleado, $IdEmpresaSesion);    
+						$this->load->model('Sindicato_Modelo');
+						$dato['empleado'] = $this->Empleado_Modelo->getEmpleado($CIEmpleado, $IdEmpresaSesion);
 						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 						$dato['sindicatos'] = $this->Sindicato_Modelo->getListSindicato($IdEmpresaSesion);
-						$dato["titulo"] = "Editar Empleado";   
-						$dato["accion"] = "Editar";	
+						$dato["titulo"] = "Editar Empleado";
+						$dato["accion"] = "Editar";
 						$dato["contenedor"] = "empleados/empleado_new_edit";
 						$this->load->view('plantilla', $dato);
 					}else{
@@ -144,14 +144,14 @@ class empleado extends CI_Controller{
 				}
  			}
 
-					
+
 		}else{
 			redirect('inicio');
 		}
 	}
 	public function guardarEmpleado(){
-		//Validar campos	
-		$this->form_validation->set_rules('txtCedula','Cédula','trim|required'); 
+		//Validar campos
+		$this->form_validation->set_rules('txtCedula','Cédula','trim|required');
 		$this->form_validation->set_rules('txtNombres','Nombres','trim|required');
 		$this->form_validation->set_rules('txtApellidoPaterno','Apellido Paterno','trim|required');
 		//$this->form_validation->set_rules('txtApellidoMaterno','Apellido Materno','trim|required');
@@ -165,20 +165,20 @@ class empleado extends CI_Controller{
 		//$this->form_validation->set_rules('txtTipoContrato','Tipo de Contrato','trim|required');
 		//$this->form_validation->set_rules('txtTipoDiscapacidad','Tipo de Discapacidad','trim|required');
 		//$this->form_validation->set_rules('txtPorentajeDiscapacidad','Porcentaje de Discapacidad','trim|required');
-		//$this->form_validation->set_rules('txtCondicionDIscapacidad','Condición de Discapacidad','trim|required');	
+		//$this->form_validation->set_rules('txtCondicionDIscapacidad','Condición de Discapacidad','trim|required');
 		$accion = $_POST['accion'];
 		$id = $_POST['id'];
 		if($this->form_validation->run() == false){	//Volver a index de login
 			if ($_POST["accion"] == "Editar") {
-				$this->editarEmpleado($id);				
+				$this->editarEmpleado($id);
 			}else{
 				$this->nuevoEmpleado();
 			}
 		}else{
-				$this->load->model('Empleado_Modelo');						
+				$this->load->model('Empleado_Modelo');
 				$txtCedula = $_POST["txtCedula"];
 				$txtNombres = $_POST["txtNombres"];
-				$txtApellidoPaterno = $_POST["txtApellidoPaterno"];				
+				$txtApellidoPaterno = $_POST["txtApellidoPaterno"];
 				$txtApellidoMaterno = $_POST["txtApellidoMaterno"];
 				$txtFechaNacimiento = $_POST["txtFechaNacimiento"];
 				$selectSexo = $_POST["selectSexo"];
@@ -191,7 +191,6 @@ class empleado extends CI_Controller{
 				$txtFechaInicioReincorporacion = $_POST["txtFechaReincorporacion"];
 				$txtFechaSalidaReincorporacion = $_POST["txtFechaSalidaReincorporacion"];
 				$txtSalario = $_POST["txtSalario"];
-				$selectTipoContrato = $_POST["selectTipoContrato"];
 				$selectCargoEstructural = $_POST["selectCargoEstructural"];
 				$txtNumClausulasContrato = $_POST["txtNumClausulasContrato"];
 				$selectAfiliadoIESS = $_POST["selectAfiliadoIESS"];
@@ -201,15 +200,17 @@ class empleado extends CI_Controller{
 				$selectCondicionDiscapacidad = $_POST["selectCondicionDiscapacidad"];
 				$selectIntruccion = $_POST["selectIntruccion"];
 				$selectEstadoLaboral = $_POST["selectEstadoLaboral"];
+				$selectEstadoCivil = $_POST["selectEstadoCivil"];
+				$selectTipoContrato = $_POST["selectTipoContrato"];
 				//$selectRevisorCurriculum = $_POST["selectRevisorCurriculum"];
 				$txtRevisorCVEmpleado = $_POST["txtRevisorCVEmpleado"];
-				$selectPerteneceSindicato = $_POST["selectPerteneceSindicato"];		
+				$selectPerteneceSindicato = $_POST["selectPerteneceSindicato"];
 				$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 				if ($accion == "Nuevo") {
 					$existeCedula = $this->Empleado_Modelo->getEmpleado($txtCedula, $IdEmpresaSesion);
 					if ($existeCedula) {
 						$mensaje = "Cédula ya existe";
-						$this->session->set_flashdata('mensaje',$mensaje);	
+						$this->session->set_flashdata('mensaje',$mensaje);
 						$this->nuevoEmpleado();
 					}else{
 						$registroEmpleado = array(
@@ -239,17 +240,17 @@ class empleado extends CI_Controller{
 						'EstadoLaboralEmpleado' => $selectEstadoLaboral,
 						'RevisorCVEmpleado' => $txtRevisorCVEmpleado,
 						'PerteneceSindicato' => $selectPerteneceSindicato,
+						'EstadoCivil' => $selectEstadoCivil,
 						'IdEmpresa' => $IdEmpresaSesion
 						);
 						if($this->Empleado_Modelo->insertEmpleado($registroEmpleado)){
-						//Variable temporal para mostrar al usuarios de éxito en el update
 							$mensaje = "El Empleado ha sido registrado con éxito";
 							$this->session->set_flashdata("mensaje", $mensaje);
 							$this->empleados();
 						}else{
 							$mensaje = "El Empleado no se ha registrado, verfique los datos ingresados";
 							$this->session->set_flashdata('mensaje',$mensaje);
-							$this->nuevoEmpleado();	
+							$this->nuevoEmpleado();
 						}
 
 					}
@@ -281,10 +282,11 @@ class empleado extends CI_Controller{
 						'EstadoLaboralEmpleado' => $selectEstadoLaboral,
 						'RevisorCVEmpleado' => $txtRevisorCVEmpleado,
 						'PerteneceSindicato' => $selectPerteneceSindicato,
+						'EstadoCivil' => $selectEstadoCivil,
 						'IdEmpresa' => $IdEmpresaSesion
 						);
+						
 					$this->Empleado_Modelo->updateEmpleado($id, $updateEmpleado, $IdEmpresaSesion);
-					//Variable temporal para mostrar al usuarios de éxito en el update
 					$mensaje = "Los datos han sido actualizados con éxito";
 					$this->session->set_flashdata("mensaje", $mensaje);
 					$this->editarEmpleado($id);
@@ -293,16 +295,16 @@ class empleado extends CI_Controller{
 
 		}
 	public function eliminarEmpleado(){
-		$this->load->model('Empleado_Modelo'); 		          	
+		$this->load->model('Empleado_Modelo');
 		$idEmple = $_POST["idEmpleado"];
-		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
-		$this->Empleado_Modelo->deleteEmpleado($idEmple, $IdEmpresaSesion); 
+		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
+		$this->Empleado_Modelo->deleteEmpleado($idEmple, $IdEmpresaSesion);
 	}
-	
+
 	/**
 	 * Accidentes de los Empleados
 	 */
-	public function accidentes(){			
+	public function accidentes(){
 		if($this->session->userdata("IdEmpresaSesion")){
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$inicioURL =  base_url();
@@ -338,7 +340,7 @@ class empleado extends CI_Controller{
 					$dato["contenedor"] = "empleados/accidentesEmpleados_view";
 					$this->load->view('plantilla', $dato);
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -348,11 +350,11 @@ class empleado extends CI_Controller{
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$tipoUsuario = $this->session->userdata("tipoUsuario");
  			if ($tipoUsuario == "Admin") {
- 				$this->load->model('Empleado_Modelo');		
+ 				$this->load->model('Empleado_Modelo');
 				$dato["contenedor"] = "empleados/accidenteEmpleado_new_edit";
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-				$dato["titulo"] = "Nuevo Accidente de Empleado"; 
-				$dato["accion"] = "Nuevo";   
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+				$dato["titulo"] = "Nuevo Accidente de Empleado";
+				$dato["accion"] = "Nuevo";
 				$this->load->view("plantilla", $dato);
  			}else{
  				$perfilSesion = $this->session->userdata("perfilSesion");
@@ -361,11 +363,11 @@ class empleado extends CI_Controller{
 				$dato["permisos"] = $this->Permiso_Modelo->getPermisoRol($idUsuarioSesion, $perfilSesion, "accidentes", $IdEmpresaSesion);
 				if (!empty($dato["permisos"])){
 					if ($dato["permisos"][0]->Agregar == 1) {
-						$this->load->model('Empleado_Modelo');		
+						$this->load->model('Empleado_Modelo');
 						$dato["contenedor"] = "empleados/accidenteEmpleado_new_edit";
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-						$dato["titulo"] = "Nuevo Accidente de Empleado"; 
-						$dato["accion"] = "Nuevo";   
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+						$dato["titulo"] = "Nuevo Accidente de Empleado";
+						$dato["accion"] = "Nuevo";
 						$this->load->view("plantilla", $dato);
 					}else{
 						$this->accidentes();
@@ -373,10 +375,10 @@ class empleado extends CI_Controller{
 				}else{
 					$this->accidentes();
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
-		}	
+		}
 	}
 	public function editarAccidente($CIEmpleado){
 		if($this->session->userdata("IdEmpresaSesion")){
@@ -385,10 +387,10 @@ class empleado extends CI_Controller{
  			if ($tipoUsuario == "Admin") {
  				$this->load->model('AccidenteEmpleado_Modelo');
 				$this->load->model('Empleado_Modelo');
-				$dato['accidente'] = $this->AccidenteEmpleado_Modelo->getAccidenteEmpleado($CIEmpleado, $IdEmpresaSesion);   
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-				$dato["titulo"] = "Editar Accidente";   
-				$dato["accion"] = "Editar";	
+				$dato['accidente'] = $this->AccidenteEmpleado_Modelo->getAccidenteEmpleado($CIEmpleado, $IdEmpresaSesion);
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+				$dato["titulo"] = "Editar Accidente";
+				$dato["accion"] = "Editar";
 				$dato["contenedor"] = "empleados/accidenteEmpleado_new_edit";
 				$this->load->view('plantilla', $dato);
  			}else{
@@ -400,10 +402,10 @@ class empleado extends CI_Controller{
 					if ($dato["permisos"][0]->Actualizar == 1) {
 						$this->load->model('AccidenteEmpleado_Modelo');
 						$this->load->model('Empleado_Modelo');
-						$dato['accidente'] = $this->AccidenteEmpleado_Modelo->getAccidenteEmpleado($CIEmpleado, $IdEmpresaSesion);   
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-						$dato["titulo"] = "Editar Accidente";   
-						$dato["accion"] = "Editar";	
+						$dato['accidente'] = $this->AccidenteEmpleado_Modelo->getAccidenteEmpleado($CIEmpleado, $IdEmpresaSesion);
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+						$dato["titulo"] = "Editar Accidente";
+						$dato["accion"] = "Editar";
 						$dato["contenedor"] = "empleados/accidenteEmpleado_new_edit";
 						$this->load->view('plantilla', $dato);
 					}else{
@@ -412,35 +414,35 @@ class empleado extends CI_Controller{
 				}else{
 					$this->accidentes();
 				}
- 			}					
+ 			}
 		}else{
 			redirect('inicio');
 		}
 	}
-	public function guardarAccidente(){	
+	public function guardarAccidente(){
 	$this->form_validation->set_rules('txtFechaAccidente','Fecha de Accidente','trim|required');
-	$this->form_validation->set_rules('txtNumDiasPerdidos','Número de Días ','trim|integer|required');	
-	$this->form_validation->set_rules('txtPeriodo','Periodo','trim|integer|required');	
+	$this->form_validation->set_rules('txtNumDiasPerdidos','Número de Días ','trim|integer|required');
+	$this->form_validation->set_rules('txtPeriodo','Periodo','trim|integer|required');
 	$accion = $_POST['accion'];
 	$id = $_POST['id'];
 	if($this->form_validation->run() == false){	//Volver a index de login
 		if ($accion == "Nuevo") {
-				$this->nuevoAccidente();		
+				$this->nuevoAccidente();
 			}else{
-				$this->editarAccidente($id);					
+				$this->editarAccidente($id);
 			}
-	}else{		
+	}else{
 			$this->load->model('AccidenteEmpleado_Modelo');
 			$tiempo = time();
 			$selectEmpleado = $_POST["selectEmpleado"];
 			$selectTipoIncapacidad = $_POST["selectTipoIncapacidad"];
 			$txtFechaAccidente = $_POST["txtFechaAccidente"];
 			$txtNumDiasPerdidos = $_POST["txtNumDiasPerdidos"];
-			$selectIndemizado = $_POST["selectIndemizado"];				
+			$selectIndemizado = $_POST["selectIndemizado"];
 			$selectFallecimiento = $_POST["selectFallecimiento"];
 			$txtPeriodo = $_POST["txtPeriodo"];
 			$txtFechaSistema = date('Y-m-d H:i:s', $tiempo);
-			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
+			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 				if ($_POST["accion"] == "Editar"){
 					$updateEmpleado = array(
 					'CIEmpleadoAccidente' => $selectEmpleado,
@@ -478,22 +480,22 @@ class empleado extends CI_Controller{
 					}else{
 						$mensaje = "El Accidente no se ha registrado, verfique los datos ingresados";
 						$this->session->set_flashdata('mensaje',$mensaje);
-						$this->nuevoAccidente();	
-					}					
+						$this->nuevoAccidente();
+					}
 
 				}
-		}	
+		}
 	}
 	public function eliminarAccidente(){
-		$this->load->model('AccidenteEmpleado_Modelo'); 		          	
+		$this->load->model('AccidenteEmpleado_Modelo');
 		$id = $_POST['IdAccident'];
-		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
-		$this->AccidenteEmpleado_Modelo->deleteAccidenteEmpleado($id, $IdEmpresaSesion); 
+		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
+		$this->AccidenteEmpleado_Modelo->deleteAccidenteEmpleado($id, $IdEmpresaSesion);
 	}
 	/**
 	 * Beneficio Laboral del Empleado
 	 */
-	public function beneficiosLaborales(){			
+	public function beneficiosLaborales(){
 		if($this->session->userdata("IdEmpresaSesion")){
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$inicioURL =  base_url();
@@ -529,7 +531,7 @@ class empleado extends CI_Controller{
 					$dato["contenedor"] = "empleados/beneficioLaboralEmpleado_view";
 					$this->load->view('plantilla', $dato);
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -542,7 +544,7 @@ class empleado extends CI_Controller{
  				$this->load->model('BeneficioLaboralEmpleado_Modelo');
 				$dato['beneficioLaboral'] = $this->BeneficioLaboralEmpleado_Modelo->getBeneficioLaboralEmpleado($IdBeneficio, $IdEmpresaSesion);
 				$dato["titulo"] = "Editar Beneficio Laboral";
-				$dato["accion"] = "Editar";	
+				$dato["accion"] = "Editar";
 				$dato["contenedor"] = "empleados/beneficioLaboralEmpleado_new_edit";
 				$this->load->view('plantilla', $dato);
  			}else{
@@ -555,7 +557,7 @@ class empleado extends CI_Controller{
 						$this->load->model('BeneficioLaboralEmpleado_Modelo');
 						$dato['beneficioLaboral'] = $this->BeneficioLaboralEmpleado_Modelo->getBeneficioLaboralEmpleado($IdBeneficio, $IdEmpresaSesion);
 						$dato["titulo"] = "Editar Beneficio Laboral";
-						$dato["accion"] = "Editar";	
+						$dato["accion"] = "Editar";
 						$dato["contenedor"] = "empleados/beneficioLaboralEmpleado_new_edit";
 						$this->load->view('plantilla', $dato);
 					}else{
@@ -564,7 +566,7 @@ class empleado extends CI_Controller{
 				}else{
 					$this->beneficiosLaborales();
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -577,8 +579,8 @@ class empleado extends CI_Controller{
  				$this->load->model('BeneficioLaboralEmpleado_Modelo');
 				$dato["beneficioLaboralEmpleado"] = $this->BeneficioLaboralEmpleado_Modelo->getListBeneficioLaboralEmpleado($IdEmpresaSesion);
 				$dato["contenedor"] = "empleados/beneficioLaboralEmpleado_new_edit";
-				$dato["titulo"] = "Nuevo Beneficio Laboral de Empleados"; 
-				$dato["accion"] = "Nuevo";   
+				$dato["titulo"] = "Nuevo Beneficio Laboral de Empleados";
+				$dato["accion"] = "Nuevo";
 				$this->load->view("plantilla", $dato);
  			}else{
  				$perfilSesion = $this->session->userdata("perfilSesion");
@@ -590,8 +592,8 @@ class empleado extends CI_Controller{
 						$this->load->model('BeneficioLaboralEmpleado_Modelo');
 						$dato["beneficioLaboralEmpleado"] = $this->BeneficioLaboralEmpleado_Modelo->getListBeneficioLaboralEmpleado($IdEmpresaSesion);
 						$dato["contenedor"] = "empleados/beneficioLaboralEmpleado_new_edit";
-						$dato["titulo"] = "Nuevo Beneficio Laboral de Empleados"; 
-						$dato["accion"] = "Nuevo";   
+						$dato["titulo"] = "Nuevo Beneficio Laboral de Empleados";
+						$dato["accion"] = "Nuevo";
 						$this->load->view("plantilla", $dato);
 					}else{
 						$this->beneficiosLaborales();
@@ -599,36 +601,36 @@ class empleado extends CI_Controller{
 				}else{
 					$this->beneficiosLaborales();
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
-		}	
+		}
 	}
-	public function guardarBeneficioLaboral(){	
+	public function guardarBeneficioLaboral(){
 		$this->form_validation->set_rules('txtNumEmpleadosBeneficio','Número de Empleados con el Beneficio','trim|integer|required');
-		$this->form_validation->set_rules('txtCostoCubreEmpresa','Costo que cubre la Empresa','trim|required');	
-		$this->form_validation->set_rules('txtNumDiasBeneficio','Número de Días que cubre el Beneficio','trim|integer|integer|required');	
+		$this->form_validation->set_rules('txtCostoCubreEmpresa','Costo que cubre la Empresa','trim|required');
+		$this->form_validation->set_rules('txtNumDiasBeneficio','Número de Días que cubre el Beneficio','trim|integer|integer|required');
 		$this->form_validation->set_rules('txtFechaMesPertenece','Fecha del Mes que pertenece','trim|required');
 		$this->form_validation->set_rules('txtPeriodo','Periodo','trim|required|integer');
 		$accion = $_POST['accion'];
-		$id = $_POST['id'];	
+		$id = $_POST['id'];
 	if($this->form_validation->run() == false){	//Volver a index de login
 		if ($accion == "Nuevo") {
-			$this->nuevoBeneficioLaboral();		
+			$this->nuevoBeneficioLaboral();
 		}else{
-			$this->editarBeneficioLaboral($id);					
+			$this->editarBeneficioLaboral($id);
 		}
-	}else{		
+	}else{
 		$tiempo = time();
-		$this->load->model('BeneficioLaboralEmpleado_Modelo');	
+		$this->load->model('BeneficioLaboralEmpleado_Modelo');
 		$selectEstado = $_POST["selectEstado"];
 		$txtNumEmpleadosBeneficio = $_POST["txtNumEmpleadosBeneficio"];
 		$txtCostoCubreEmpresa = $_POST["txtCostoCubreEmpresa"];
-		$txtNumDiasBeneficio = $_POST["txtNumDiasBeneficio"];	
+		$txtNumDiasBeneficio = $_POST["txtNumDiasBeneficio"];
 		$txtFechaMesPertenece = $_POST["txtFechaMesPertenece"];
 		$txtObservacion = $_POST["txtObservacion"];
 		$txtPeriodo = $_POST["txtPeriodo"];
-		$txtFechaSistema = date("Y-m-d H:i:s", $tiempo);		
+		$txtFechaSistema = date("Y-m-d H:i:s", $tiempo);
 		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 		if ($accion == "Editar"){
 			$updateEmpleado = array(
@@ -667,22 +669,22 @@ class empleado extends CI_Controller{
 			}else{
 				$mensaje = "El Beneficio no se ha registrado, verfique los datos ingresados";
 				$this->session->set_flashdata('mensaje',$mensaje);
-				$this->nuevoBeneficioLaboral();	
-			}					
+				$this->nuevoBeneficioLaboral();
+			}
 
 		}
-	}	
+	}
 	}
 	public function eliminarBeneficioLaboral(){
-		$this->load->model('BeneficioLaboralEmpleado_Modelo'); 		          	
+		$this->load->model('BeneficioLaboralEmpleado_Modelo');
 		$id = $_POST["IdBeneficioLab"];
-		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
-		$this->BeneficioLaboralEmpleado_Modelo->deleteBeneficioLaboralEmpleado($id, $IdEmpresaSesion); 
+		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
+		$this->BeneficioLaboralEmpleado_Modelo->deleteBeneficioLaboralEmpleado($id, $IdEmpresaSesion);
 	}
 	/**
 	 * Capacitación a Empleados
-	 */	
-	public function capacitacionesEmpleados(){			
+	 */
+	public function capacitacionesEmpleados(){
 		if($this->session->userdata("IdEmpresaSesion")){
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$inicioURL =  base_url();
@@ -718,7 +720,7 @@ class empleado extends CI_Controller{
 					$dato["contenedor"] = "empleados/capacitacionesEmpleado_view";
 					$this->load->view('plantilla', $dato);
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -732,8 +734,8 @@ class empleado extends CI_Controller{
 				$this->load->model('Proveedor_Modelo');
 				$this->load->model('Empleado_Modelo');
 				$dato['capacitacionConsejoEmpleado'] = $this->CapacitacionEmpleado_Modelo->getListCapacitacionEmpleado($IdEmpresaSesion);
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-				$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);  
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+				$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);
 				$dato["titulo"] = "Nueva Capacitación a Empleados";
 				$dato["accion"] = "Nuevo";
 				$dato["contenedor"] = "empleados/capacitacionEmpleado_new_edit";
@@ -749,8 +751,8 @@ class empleado extends CI_Controller{
 						$this->load->model('Proveedor_Modelo');
 						$this->load->model('Empleado_Modelo');
 						$dato['capacitacionConsejoEmpleado'] = $this->CapacitacionEmpleado_Modelo->getListCapacitacionEmpleado($IdEmpresaSesion);
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
-						$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);  
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+						$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);
 						$dato["titulo"] = "Nueva Capacitación a Empleados";
 						$dato["accion"] = "Nuevo";
 						$dato["contenedor"] = "empleados/capacitacionEmpleado_new_edit";
@@ -761,7 +763,7 @@ class empleado extends CI_Controller{
 				}else{
 					$this->capacitacionesEmpleados();
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -774,11 +776,11 @@ class empleado extends CI_Controller{
  				$this->load->model('Proveedor_Modelo');
 				$this->load->model('CapacitacionEmpleado_Modelo');
 				$this->load->model('Empleado_Modelo');
-				$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion); 
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
+				$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 				$dato['capacitacionEmpleado'] = $this->CapacitacionEmpleado_Modelo->getCapacitacionEmpleado($IdCapacitacion, $IdEmpresaSesion);
 				$dato["titulo"] = "Editar Capacitación de Empleados";
-				$dato["accion"] = "Editar";	
+				$dato["accion"] = "Editar";
 				$dato["contenedor"] = "empleados/capacitacionEmpleado_new_edit";
 				$this->load->view('plantilla', $dato);
  			}else{
@@ -791,45 +793,45 @@ class empleado extends CI_Controller{
 						$this->load->model('Proveedor_Modelo');
 						$this->load->model('CapacitacionEmpleado_Modelo');
 						$this->load->model('Empleado_Modelo');
-						$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion); 
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);  
+						$dato['proveedores'] = $this->Proveedor_Modelo->getListProveedor($IdEmpresaSesion);
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
 						$dato['capacitacionEmpleado'] = $this->CapacitacionEmpleado_Modelo->getCapacitacionEmpleado($IdCapacitacion, $IdEmpresaSesion);
 						$dato["titulo"] = "Editar Capacitación de Empleados";
-						$dato["accion"] = "Editar";	
+						$dato["accion"] = "Editar";
 						$dato["contenedor"] = "empleados/capacitacionEmpleado_new_edit";
-						$this->load->view('plantilla', $dato);	
+						$this->load->view('plantilla', $dato);
 					}else{
 						$this->capacitacionesEmpleados();
 					}
 				}else{
 					$this->capacitacionesEmpleados();
 				}
- 			}					
+ 			}
 		}else{
 			redirect('inicio');
 		}
 	}
 	public function guardarCapacitacionEmpleado(){
-		$this->form_validation->set_rules('txtNombreCapacitacion','Nombre de la Capacitación','trim|required'); 		
-		$this->form_validation->set_rules('txtFechaPlanificacion','Fecha de Planificación','trim|required'); 		
-		$this->form_validation->set_rules('txtOrdenPedido','Orden de Pedido','trim|required'); 		
-		$this->form_validation->set_rules('txtPresupuesto','Presupuesto','trim|required'); 		
-		$this->form_validation->set_rules('txtCantHorasPlanificadas','Cantidad de horas Planificada','trim|integer|required'); 		
-		$this->form_validation->set_rules('txtNumParticipantesEsperados','Número de Participantes esperados','trim|integer|required'); 	
-		$this->form_validation->set_rules('txtPeriodo','Periodo','trim|integer|required'); 	
+		$this->form_validation->set_rules('txtNombreCapacitacion','Nombre de la Capacitación','trim|required');
+		$this->form_validation->set_rules('txtFechaPlanificacion','Fecha de Planificación','trim|required');
+		$this->form_validation->set_rules('txtOrdenPedido','Orden de Pedido','trim|required');
+		$this->form_validation->set_rules('txtPresupuesto','Presupuesto','trim|required');
+		$this->form_validation->set_rules('txtCantHorasPlanificadas','Cantidad de horas Planificada','trim|integer|required');
+		$this->form_validation->set_rules('txtNumParticipantesEsperados','Número de Participantes esperados','trim|integer|required');
+		$this->form_validation->set_rules('txtPeriodo','Periodo','trim|integer|required');
 		$accion = $_POST['accion'];
-		$id = $_POST['id'];	
+		$id = $_POST['id'];
 		if ($this->form_validation->run() == false) {
 			if ($accion == "Nuevo") {
-				$this->nuevaCapacitacionEmpleado();		
+				$this->nuevaCapacitacionEmpleado();
 			}else{
-				$this->editarCapacitacionEmpleado($id);					
+				$this->editarCapacitacionEmpleado($id);
 			}
 		}else{
 			$this->load->model('CapacitacionEmpleado_Modelo');
 			$tiempo = time();
 			$txtNombreCapacitacion = $_POST["txtNombreCapacitacion"];
-			$txtFechaPlanificacion = $_POST["txtFechaPlanificacion"];			
+			$txtFechaPlanificacion = $_POST["txtFechaPlanificacion"];
 			$txtOrdenPedido = $_POST["txtOrdenPedido"];
 			$selectTipoCapacitacion = $_POST["selectTipoCapacitacion"];
 			$txtPresupuesto = $_POST["txtPresupuesto"];
@@ -839,11 +841,11 @@ class empleado extends CI_Controller{
 			$selectProveedor = $_POST["selectProveedor"];
 			$txtFechaEjecucion = $_POST["txtFechaEjecucion"];
 			$txtNumParticipantesCapacitados = $_POST["txtNumParticipantesCapacitados"];
-			$txtCantHorasEjecutadas = $_POST["txtCantHorasEjecutadas"];				
-			$txtAreaImpartida = $_POST["txtAreaImpartida"];				
-			$txtCosto = $_POST["txtCosto"];				
+			$txtCantHorasEjecutadas = $_POST["txtCantHorasEjecutadas"];
+			$txtAreaImpartida = $_POST["txtAreaImpartida"];
+			$txtCosto = $_POST["txtCosto"];
 			$selectEmpleado = $_POST["selectEmpleado"];
-			if(!empty($_FILES['inputFoto']['tmp_name']) && file_exists($_FILES['inputFoto']['tmp_name'])) {				
+			if(!empty($_FILES['inputFoto']['tmp_name']) && file_exists($_FILES['inputFoto']['tmp_name'])) {
 				$imagen= addslashes(file_get_contents($_FILES['inputFoto']['tmp_name']));
 			}else{
 				$imagen = "";
@@ -852,7 +854,7 @@ class empleado extends CI_Controller{
 			$txtFechaSistema = date('Y-m-d H:i:s');
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			if ($_POST["accion"] == "Editar"){
-				$updateCapacitacionEmpleado = array(				
+				$updateCapacitacionEmpleado = array(
 					'NombreCapacitacion' => $txtNombreCapacitacion,
 					'FechaPlanificada' => $txtFechaPlanificacion,
 					'OrdenPedido' => $txtOrdenPedido,
@@ -876,11 +878,11 @@ class empleado extends CI_Controller{
 				if($this->CapacitacionEmpleado_Modelo->updateCapacitacionEmpleado($id, $updateCapacitacionEmpleado, $IdEmpresaSesion)){
 					$mensaje = "La Capacitación se modificó con éxito";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->editarCapacitacionEmpleado($id);				
+					$this->editarCapacitacionEmpleado($id);
 				}else{
 					$mensaje = "La Capacitación no se ha modificado, verfique los datos ingresados";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->editarCapacitacionEmpleado($id);				
+					$this->editarCapacitacionEmpleado($id);
 				}
 			}else{
 				$insertCapacitacionEmpleado = array(
@@ -907,25 +909,25 @@ class empleado extends CI_Controller{
 				if($this->CapacitacionEmpleado_Modelo->insertCapacitacionEmpleado($insertCapacitacionEmpleado)){
 					$mensaje = "La Capacitación se insertó con éxito";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->capacitacionesEmpleados();				
+					$this->capacitacionesEmpleados();
 				}else{
 					$mensaje = "La Capacitación no se ha registrado, verfique los datos ingresados";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->nuevaCapacitacionEmpleado();				
+					$this->nuevaCapacitacionEmpleado();
 				}
 			}
 		}
 	}
 	public function eliminarCapacitacionEmpleado(){
-		$this->load->model('CapacitacionEmpleado_Modelo'); 		          	
+		$this->load->model('CapacitacionEmpleado_Modelo');
 		$id  = $_POST['IdCapacitacionEm'];
-		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
-		$this->CapacitacionEmpleado_Modelo->deleteCapacitacionEmpleado($id, $IdEmpresaSesion); 
+		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
+		$this->CapacitacionEmpleado_Modelo->deleteCapacitacionEmpleado($id, $IdEmpresaSesion);
 	}
 	/**
 	 * Hijo de Empleado
 	 */
-	public function hijos(){			
+	public function hijos(){
 		if($this->session->userdata("IdEmpresaSesion")){
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$inicioURL =  base_url();
@@ -962,7 +964,7 @@ class empleado extends CI_Controller{
 					$this->load->view('plantilla', $dato);
 				}
  			}
-			
+
 		}else{
 			redirect('inicio');
 		}
@@ -974,8 +976,8 @@ class empleado extends CI_Controller{
  			if ($tipoUsuario == "Admin") {
  				$this->load->model('Empleado_Modelo');
 				$this->load->model('HijoEmpleado_Modelo');
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);    
-				$dato['hijoEmpleados'] = $this->HijoEmpleado_Modelo->getListHijoEmpleado($IdEmpresaSesion);    
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+				$dato['hijoEmpleados'] = $this->HijoEmpleado_Modelo->getListHijoEmpleado($IdEmpresaSesion);
 				$dato["titulo"] = "Nuevo Hijo de un Empleado";
 				$dato["accion"] = "Nuevo";
 				$dato["contenedor"] = "empleados/hijoEmpleado_new_edit";
@@ -989,8 +991,8 @@ class empleado extends CI_Controller{
 					if ($dato["permisos"][0]->Agregar == 1) {
 						$this->load->model('Empleado_Modelo');
 						$this->load->model('HijoEmpleado_Modelo');
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);    
-						$dato['hijoEmpleados'] = $this->HijoEmpleado_Modelo->getListHijoEmpleado($IdEmpresaSesion);    
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+						$dato['hijoEmpleados'] = $this->HijoEmpleado_Modelo->getListHijoEmpleado($IdEmpresaSesion);
 						$dato["titulo"] = "Nuevo Hijo de un Empleado";
 						$dato["accion"] = "Nuevo";
 						$dato["contenedor"] = "empleados/hijoEmpleado_new_edit";
@@ -1001,7 +1003,7 @@ class empleado extends CI_Controller{
 				}else{
 					$this->hijos();
 				}
- 			}			
+ 			}
 		}else{
 			redirect('inicio');
 		}
@@ -1011,12 +1013,12 @@ class empleado extends CI_Controller{
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$tipoUsuario = $this->session->userdata("tipoUsuario");
  			if ($tipoUsuario == "Admin") {
- 				$this->load->model('HijoEmpleado_Modelo');	
-				$this->load->model('Empleado_Modelo');		
+ 				$this->load->model('HijoEmpleado_Modelo');
+				$this->load->model('Empleado_Modelo');
 				$dato['hijoEmpleado'] = $this->HijoEmpleado_Modelo->getHijoEmpleado($IdHijoEmpleado, $IdEmpresaSesion);
-				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);    
-				$dato["titulo"] = "Editar Hijo del Empleado";   
-				$dato["accion"] = "Editar";	
+				$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+				$dato["titulo"] = "Editar Hijo del Empleado";
+				$dato["accion"] = "Editar";
 				$dato["contenedor"] = "empleados/hijoEmpleado_new_edit";
 				$this->load->view('plantilla', $dato);
  			}else{
@@ -1026,12 +1028,12 @@ class empleado extends CI_Controller{
 				$dato["permisos"] = $this->Permiso_Modelo->getPermisoRol($idUsuarioSesion, $perfilSesion, "hijosEmpleados", $IdEmpresaSesion);
 				if (!empty($dato["permisos"])){
 					if ($dato["permisos"][0]->Actualizar == 1) {
-						$this->load->model('HijoEmpleado_Modelo');	
-						$this->load->model('Empleado_Modelo');		
+						$this->load->model('HijoEmpleado_Modelo');
+						$this->load->model('Empleado_Modelo');
 						$dato['hijoEmpleado'] = $this->HijoEmpleado_Modelo->getHijoEmpleado($IdHijoEmpleado, $IdEmpresaSesion);
-						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);    
-						$dato["titulo"] = "Editar Hijo del Empleado";   
-						$dato["accion"] = "Editar";	
+						$dato['empleados'] = $this->Empleado_Modelo->getListEmpleado($IdEmpresaSesion);
+						$dato["titulo"] = "Editar Hijo del Empleado";
+						$dato["accion"] = "Editar";
 						$dato["contenedor"] = "empleados/hijoEmpleado_new_edit";
 						$this->load->view('plantilla', $dato);
 					}else{
@@ -1041,44 +1043,44 @@ class empleado extends CI_Controller{
 					$this->hijos();
 				}
  			}
-						
+
 		}else{
 			redirect('inicio');
 		}
 	}
 	public function guardarHijoEmpleado(){
-		$this->form_validation->set_rules('txtCedula','Cedula de Hijo','trim|integer|required'); 		
-		$this->form_validation->set_rules('txtNombres','Nombres','trim|required'); 		
-		$this->form_validation->set_rules('txtApellidos','Apellidos','trim|required'); 		
-		$this->form_validation->set_rules('txtFechaNacimiento','Fecha de Nacimiento','trim|required'); 
+		$this->form_validation->set_rules('txtCedula','Cedula de Hijo','trim|integer|required');
+		$this->form_validation->set_rules('txtNombres','Nombres','trim|required');
+		$this->form_validation->set_rules('txtApellidos','Apellidos','trim|required');
+		$this->form_validation->set_rules('txtFechaNacimiento','Fecha de Nacimiento','trim|required');
 		$accion = $_POST['accion'];
-		$id = $_POST['id']; 
+		$id = $_POST['id'];
 		if ($this->form_validation->run() == false) {
 			if ($accion == "Nuevo") {
-				$this->nuevoHijoEmpleado();		
+				$this->nuevoHijoEmpleado();
 			}else{
-				$this->editarHijoEmpleado($id);					
+				$this->editarHijoEmpleado($id);
 			}
 		}else{
 			$this->load->model('HijoEmpleado_Modelo');
-			$tiempo = time();  
+			$tiempo = time();
 			$selectEmpleado = $_POST["selectEmpleado"];
-			$txtCedula = $_POST["txtCedula"];			
+			$txtCedula = $_POST["txtCedula"];
 			$txtNombres = $_POST["txtNombres"];
 			$txtApellidos = $_POST["txtApellidos"];
 			$txtFechaNacimiento = $_POST["txtFechaNacimiento"];
 			$selectDiscapacidad = $_POST["selectDiscapacidad"];
-			$selectTipoEduacion = $_POST["selectTipoEduacion"];						
-			$txtFechaSistema = date("Y-m-d H:i:s", $tiempo);					
+			$selectTipoEduacion = $_POST["selectTipoEduacion"];
+			$txtFechaSistema = date("Y-m-d H:i:s", $tiempo);
 			$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
 			$existeCedula = $this->HijoEmpleado_Modelo->getHijoEmpleado($txtCedula, $IdEmpresaSesion);
 				if ($existeCedula == true) {
 					$mensaje = "Hijo ya está registrado";
-					$this->session->set_flashdata('mensaje',$mensaje);	
+					$this->session->set_flashdata('mensaje',$mensaje);
 					$this->nuevoHijoEmpleado();
 				}else{
 				if ($accion == "Editar"){
-				$updateHijoEmpleado = array(					
+				$updateHijoEmpleado = array(
 					'CedulaEmpleado' => $selectEmpleado,
 					'CedulaHijoEmpleado' => $txtCedula,
 					'NombresHijoEmpleado' => $txtNombres,
@@ -1092,11 +1094,11 @@ class empleado extends CI_Controller{
 				if($this->HijoEmpleado_Modelo->updateHijoEmpleado($id, $updateHijoEmpleado, $IdEmpresaSesion)){
 					$mensaje = "El Hijo del Empleado se ha actualizado con éxito";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->editarHijoEmpleado($id);				
+					$this->editarHijoEmpleado($id);
 				}else{
 					$mensaje = "El Hijo del Empleado no se ha actualizado, verfique los datos ingresados";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->editarHijoEmpleado($id);				
+					$this->editarHijoEmpleado($id);
 				}
 			}else{
 				$insertHijoEmpleado = array(
@@ -1113,11 +1115,11 @@ class empleado extends CI_Controller{
 				if($this->HijoEmpleado_Modelo->insertHijoEmpleado($insertHijoEmpleado)){
 					$mensaje = "El Hijo del Empleado se insertó con éxito";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->nuevoHijoEmpleado();				
+					$this->nuevoHijoEmpleado();
 				}else{
 					$mensaje = "El Hijo del Empleado no se ha registrado, verfique los datos ingresados";
 					$this->session->set_flashdata('mensaje',$mensaje);
-					$this->nuevoHijoEmpleado();				
+					$this->nuevoHijoEmpleado();
 				}
 			}
 
@@ -1126,12 +1128,12 @@ class empleado extends CI_Controller{
 		}
 	}
 	public function eliminarHijoEmpleado(){
-		$this->load->model('HijoEmpleado_Modelo'); 		          	
-		
+		$this->load->model('HijoEmpleado_Modelo');
+
 		$IdHijoEmp = $_POST["IdHijoEmpleado"];
 
-		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");	
-		$this->HijoEmpleado_Modelo->deleteHijoEmpleado($IdHijoEmp, $IdEmpresaSesion); 
+		$IdEmpresaSesion = $this->session->userdata("IdEmpresaSesion");
+		$this->HijoEmpleado_Modelo->deleteHijoEmpleado($IdHijoEmp, $IdEmpresaSesion);
 	}
 
 /**
@@ -1159,5 +1161,3 @@ function edad($fecha){
 
 
 }
-
-?>
