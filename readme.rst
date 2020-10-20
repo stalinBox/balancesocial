@@ -26,16 +26,13 @@ realizadas y poder plasmarlos en la base de datos del Sistema Web.
 Release Information
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Este repositorio contiene código en desarrollo para futuras versiones
 
 **************************
 Changelog and New Features
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Para cualquier cambio o sugerencia dejar su comentario 
 
 *******************
 Server Requirements
