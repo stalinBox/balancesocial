@@ -1,14 +1,26 @@
 ###################
-What is CodeIgniter
+SISTEMA DE INFORMACION DE RESPONSABILIDAD SOCIAL
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+El Sistema de Información de Responsabilidad Social Empresarial, está diseñado para
+facilitar a los usuarios de diferentes empresas a gestionar su información.
+El Sistema Web almacena información la cual va siendo registrada durante todo el periodo
+por los usuarios registrados, como producto final se presentan varios informes como lo son,
+Evaluación de la Responsabilidad de la Empresa, Calificación de cada uno de los
+Indicadores Cualitativos y Cuantitativos, Balance de Sustentabilidad, Gráficas estadísticas,
+entre otros.
+
+El Sistema evalúa Indicadores Cualitativos y Cuantitativos cuidadosamente seleccionados
+en base a estudios realizados en Responsabilidad Social Empresarial a nivel Mundial, estos
+Indicadores van a ser los encargados de evaluar todos los datos ingresados en el Sistema
+generando un resultado con su respectiva calificación, calificación que va desde 0 a 5 junto
+con un color asociado detallado más adelante en el presente documento.
+ 
+Cada uno de los indicadores se distribuye por las diferentes áreas de los departamentos, con
+esta misma idea se identifican los módulos y sub-módulos al cual pertenece y la asignación
+de los códigos del GRI para poder obtener los reportes de acuerdo a las clasificaciones
+realizadas y poder plasmarlos en la base de datos del Sistema Web. 
+
 
 *******************
 Release Information
@@ -29,18 +41,10 @@ guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide
 Server Requirements
 *******************
 
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
-
-************
-Installation
-************
-
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+-  `WAMPServer any version`
+-  `MySQL 5.7`
+-  `APACHE 2.4`
+-  `PHP 5.6`
 
 *******
 License
@@ -49,22 +53,10 @@ License
 Please see the `license
 agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
 
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community IRC <https://webchat.freenode.net/?channels=%23codeigniter>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
 
 ***************
 Acknowledgement
 ***************
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+Universidad Tecnica de ambato - Proyecto Impacto de un modelo de balance social para las
+Cooperativas de ahorro y crédito. Un estudio sobre el efecto en los principios cooperativos
